@@ -247,6 +247,7 @@
 # with redis caching added for high traffic scenarios handle multiple requests for same trip plans in below
 
 import os
+import sys
 import logging
 import traceback
 from datetime import date, datetime
@@ -272,16 +273,16 @@ from trip_tasks import TripTasks
 # ============================================================
 load_dotenv()
 
-# ============================================================
-# 🔧 LOGGING CONFIGURATION
-# ============================================================
+# 🛠 Ensure stdout and logging use UTF-8 to support emojis on Windows & Linux
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
+
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler("vacAIgent_api.log"),
-        logging.StreamHandler()
-    ]
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger(__name__)
 logger.info("🚀 VacAIgent API starting (OpenAI only)")

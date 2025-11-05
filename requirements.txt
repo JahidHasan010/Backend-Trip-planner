@@ -23,4 +23,4 @@ nest_asyncio
 
 # Langchain integrations
 langchain-openai>=0.0.5
-gunicorn
+

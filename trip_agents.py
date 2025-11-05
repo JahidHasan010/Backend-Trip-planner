@@ -1,5 +1,5 @@
-
 import re
+import sys
 import os
 import logging
 from crewai import Agent, LLM
@@ -8,16 +8,15 @@ from tools.browser_tools import BrowserTools
 from tools.calculator_tools import CalculatorTools
 from tools.search_tools import SearchTools
 
+
+
 # ---------------------------
 # 🔧 LOGGING CONFIGURATION
 # ---------------------------
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler("trip_agents.log"),
-        logging.StreamHandler()
-    ]
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 
 # ---------------------------
@@ -30,7 +29,7 @@ class TripAgents():
             try:
                 self.llm = LLM(
                     model="gpt-5-mini",  # or gpt-4o-mini, gpt-4o, etc.
-                    api_key=os.getenv("OPENAI_API_KEY")
+                    # api_key=os.getenv("OPENAI_API_KEY")
                 )
                 logging.info("✅ OpenAI LLM (gpt-5-mini) initialized successfully.")
             except Exception as e:

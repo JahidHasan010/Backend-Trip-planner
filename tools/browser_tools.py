@@ -1,6 +1,7 @@
 
 
 import os
+import sys
 import json
 import requests
 import logging
@@ -12,13 +13,19 @@ from crewai import Agent, Task, LLM
 # ---------------------------
 # 🔧 LOGGING CONFIGURATION
 # ---------------------------
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format="%(asctime)s [%(levelname)s] %(message)s",
+#     handlers=[
+#         logging.FileHandler("browser_tools.log"),
+#         logging.StreamHandler()
+#     ]
+# )
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler("browser_tools.log"),
-        logging.StreamHandler()
-    ]
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 
 # ---------------------------
